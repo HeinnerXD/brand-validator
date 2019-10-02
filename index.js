@@ -792,7 +792,10 @@ function validateText(text1, text2, text3, text4, text5, text6, text7, text8) {
         };
         return incompatibleTitle;
     } else {
-        let error = 'Parametros invalidos...';
+        let error = {
+            error: 'Undefined Value',
+            message: 'You have to provide eight text to validate, provide a null string if you dont have other texts to validate.'
+        };
         return error;
     };
 };
