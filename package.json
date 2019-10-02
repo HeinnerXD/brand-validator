@@ -1,0 +1,19 @@
+{
+  "name": "brand-validator",
+  "version": "1.0.0",
+  "description": "Module to validate any famous or certificated brand on your text",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeinnerXD/brand-validator.git"
+  },
+  "author": "Heinner Mayorga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HeinnerXD/brand-validator/issues"
+  },
+  "homepage": "https://github.com/HeinnerXD/brand-validator#readme"
+}
