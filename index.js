@@ -1,39 +1,47 @@
 'use strict'
 
-function validateText(text1, text2, text3, text4, text5, text6, text7, text8) {
-    if (text1 != undefined && text2 != undefined && text3 != undefined && text4 != undefined && text5 != undefined && text6 != undefined && text7 != undefined && text8 != undefined) {
-        var incompatibleTitle = false;
-        var stringInitial = (text1.toLowerCase() + ' ' + text2.toLowerCase() + ' ' + text3.toLowerCase() + ' ' + text4.toLowerCase() + ' ' + text5.toLowerCase() + ' ' + text6.toLowerCase() + ' ' + text7.toLowerCase() + ' ' + text8.toLowerCase());
-        var stringToValidate = stringInitial.replace(/\./g, ' ')
-            .replace(/,/g, ' ')
-            .replace(/-/g, ' ')
-            .replace(/!/g, ' ')
-            .replace(/@/g, ' ')
-            .replace(/#/g, ' ')
-            .replace(/%/g, ' ')
-            .replace(/&/g, ' ')
-            .replace(/"/g, ' ')
-            .replace(/"/g, ' ')
-            .replace(/:/g, ' ')
-            .replace(/;/g, ' ')
-            .replace(/]/g, ' ')
-            .replace(/{/g, ' ')
-            .replace(/}/g, ' ')
-            .replace(/</g, ' ')
-            .replace(/>/g, ' ')
-            .replace(/=/g, ' ')
-            .replace(/•/g, ' ')
-            .replace(/»/g, ' ')
-            .replace(/«/g, ' ')
-            .replace(/~/g, ' ')
-            .replace(/\*/g, ' ')
-            .replace(/\(/g, ' ')
-            .replace(/\)/g, ' ')
-            .replace(/\?/g, ' ')
-            .replace(/\¿/g, ' ')
-            .replace(/\//g, ' ')
-            .replace(/\'/g, ' ')
-            .normalize('NFD').replace(/[\u0300-\u036f]/g, ""); // quita todas las tildes diacriticas que hayan en el string
+const wrongWords = require('./data/words');
+
+function validateText(text) {
+    if (text) {
+        if (typeof (text) != 'string') {
+            let error = {
+                error: 'Undefined Value',
+                message: 'Please provide an String value'
+            };
+            return error;
+        } else {
+            var incompatibleTitle = false;
+            var stringToValidate = ' ' + text.toLowerCase().replace(/\./g, ' ') + ' '
+                .replace(/,/g, ' ')
+                .replace(/-/g, ' ')
+                .replace(/!/g, ' ')
+                .replace(/@/g, ' ')
+                .replace(/#/g, ' ')
+                .replace(/%/g, ' ')
+                .replace(/&/g, ' ')
+                .replace(/"/g, ' ')
+                .replace(/"/g, ' ')
+                .replace(/:/g, ' ')
+                .replace(/;/g, ' ')
+                .replace(/]/g, ' ')
+                .replace(/{/g, ' ')
+                .replace(/}/g, ' ')
+                .replace(/</g, ' ')
+                .replace(/>/g, ' ')
+                .replace(/=/g, ' ')
+                .replace(/•/g, ' ')
+                .replace(/»/g, ' ')
+                .replace(/«/g, ' ')
+                .replace(/~/g, ' ')
+                .replace(/\*/g, ' ')
+                .replace(/\(/g, ' ')
+                .replace(/\)/g, ' ')
+                .replace(/\?/g, ' ')
+                .replace(/\¿/g, ' ')
+                .replace(/\//g, ' ')
+                .replace(/\'/g, ' ')
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, "");
 
             const words = stringToValidate.split(' ');
             const abShaperTitle = stringToValidate.split(' ab shaper ');
@@ -210,399 +218,6 @@ function validateText(text1, text2, text3, text4, text5, text6, text7, text8) {
             const ontelProductsTitle = stringToValidate.split(' ontel products ');
             const urbanDecayTitle = stringToValidate.split(' urban decay ');
             const skipHopTitle = stringToValidate.split(' skip hop ');
-
-            const wrongWords = [
-                'abtomic',
-                'sony',
-                'burberry',
-                'naked',
-                'pandora',
-                'japonesque',
-                'bose',
-                'sanrio',
-                'nintendo',
-                'gucci',
-                'mac',
-                'adidas',
-                'lego',
-                'nike',
-                'disney',
-                'nokia',
-                'trolls',
-                'converse',
-                'fifa',
-                'loz',
-                'clarins',
-                'samsung',
-                'diesel',
-                'versace',
-                'firearm',
-                'firearms',
-                'coas',
-                'chef',
-                'tempo',
-                'royale',
-                'puffs',
-                'banner',
-                'ziac',
-                'joy',
-                'era',
-                'dash',
-                'comet',
-                'cinch',
-                'cheer',
-                'bold',
-                'biz',
-                'always',
-                'wings',
-                'venezia',
-                'p&g',
-                'herschel',
-                'lauren',
-                'ralph',
-                'polo',
-                'hann',
-                'pad',
-                'potty',
-                'puppy',
-                'guerra',
-                'war',
-                'kandouren',
-                'espada',
-                'cuchillos',
-                'cuchillo',
-                'mira',
-                'rifle',
-                'arma',
-                'sword',
-                'knives',
-                'knife',
-                'blade',
-                'look',
-                'weapon',
-                'aussie',
-                'aussi',
-                'iqos',
-                'belkin',
-                'ace',
-                'actisite',
-                'ariel',
-                'astra',
-                'attends',
-                'ausonia',
-                'bess',
-                'bounce',
-                'bounty',
-                'brontex',
-                'buffette',
-                'camay',
-                'cascade',
-                'charmin',
-                'chloraseptic',
-                'clearasil',
-                'crest',
-                'crisco',
-                'd&g',
-                'dantrium',
-                'dawn',
-                'dayquil',
-                'didronel',
-                'dodot',
-                'downy',
-                'drene',
-                'dunhil',
-                'duracell',
-                'escada',
-                'eukanuba',
-                'evax',
-                'fairy',
-                'fixodent',
-                'gain',
-                'gillette',
-                'giorgio',
-                'gucci',
-                'h&s',
-                'iams',
-                'infusium23',
-                'ivory',
-                'koleston',
-                'lacoste',
-                'ladysan',
-                'lirio',
-                'lunch',
-                'luvs',
-                'macrodantin',
-                'magistral',
-                'masterly',
-                'marlboro',
-                'metamucil',
-                'moncler',
-                'motif',
-                'mum',
-                'naturella',
-                'nyquil',
-                'odontine',
-                'olay',
-                'oldspice',
-                'oral-b',
-                'pampers',
-                'pantene',
-                'percogesic',
-                'prell',
-                'pringles',
-                'rindex',
-                'rochas',
-                'safeguard',
-                'salvo',
-                'sk-ii',
-                'summit',
-                'tampax',
-                'tess',
-                'tide',
-                'ultradol',
-                'vaporub',
-                'vick',
-                'wella',
-                'wellaton',
-                'zebete',
-                'zest',
-                'minion',
-                'minions',
-                'sharp',
-                'kenzo',
-                'detox',
-                `levi's`,
-                'pantene',
-                'g&g',
-                'vaporub',
-                'vicks',
-                'crest',
-                'minecraft',
-                'sexual',
-                'capsula',
-                'capsulas',
-                'capsule',
-                'capsules',
-                'build-a-bear',
-                'pureclean',
-                'post-it',
-                'kabuki',
-                'chanel',
-                'vitaminas',
-                'vitamina',
-                'vitamin',
-                'vitamins',
-                'marvel',
-                'funko',
-                'enhancer',
-                'dabalash',
-                'meteorito',
-                'meteorite',
-                'mpow',
-                'ruger',
-                `l'oreal`,
-                'presidio',
-                'mkkt',
-                'maomi',
-                'loading…',
-                'asunto',
-                'affair',
-                'juventus',
-                'ikea',
-                'motorkote',
-                'vapeador',
-                'vapeadores',
-                'vaper',
-                'vapers',
-                'criptomoneda',
-                'cryptocurrency',
-                'cryptocurrencies',
-                'btc',
-                'herbalife',
-                'flawless',
-                'melkin',
-                'admiss',
-                'adobe',
-                'antminer',
-                'apple',
-                'arawak',
-                'armani',
-                'armáni',
-                'assn',
-                'arnette',
-                'babyliss',
-                'beachbody',
-                'bebesit',
-                'biomega',
-                'biotin',
-                'biotina',
-                'bitcoin',
-                'braun',
-                'brother',
-                'buff',
-                'bulbhead',
-                'bulgari',
-                'bvlgari',
-                'cambogia',
-                'canabis',
-                'cannabidiol',
-                'cannabis',
-                'cartucho',
-                'cartuchos',
-                'cartridge',
-                'cartridges',
-                'chefs',
-                'chocoliss',
-                'coach',
-                'cobre',
-                'copper',
-                'converse',
-                'cosmedica',
-                'decodificador',
-                'decoder',
-                'dermavital',
-                'dermavitál',
-                'dermawand',
-                'diesel',
-                'diésel',
-                'dior',
-                'econtrolly',
-                'ecotools',
-                'elvive',
-                'emporio',
-                'ergobaby',
-                'ethereum',
-                'fajate',
-                'feg',
-                'ferrari',
-                'fisher-price',
-                'fisherprice',
-                'fitbit',
-                'flekosteel',
-                'fosil',
-                'fosiles',
-                'fossil',
-                'fossils',
-                'fox',
-                'furminator',
-                'garcinia',
-                'givenchy',
-                'goji',
-                'gopro',
-                'gopro1',
-                'grasa',
-                'grease',
-                'guess',
-                'hawkers',
-                'homedics',
-                'hormigas',
-                'ants',
-                'hp',
-                'hugo',
-                'hummer',
-                'icreatin',
-                'imitacion',
-                'imitation',
-                'instyler',
-                'invicta',
-                'undefeated',
-                'irobot',
-                'jafer',
-                'jansport',
-                'johnson',
-                'kask',
-                'kerastase',
-                'kiowa',
-                'kipling',
-                'kylie',
-                'lacoste',
-                'lamborghini',
-                'laserjet',
-                'leonisa',
-                'leslie',
-                'levis',
-                'lincoln',
-                'livall',
-                'loreal',
-                'loréal',
-                'lubriderm',
-                'magsafe',
-                'marihuana',
-                'marijuana',
-                'massglo',
-                'maxim',
-                'maybelline',
-                'medela',
-                'melatonina',
-                'minoxidil',
-                'movado',
-                'mulco',
-                'natrol',
-                'nazi',
-                'neutrogena',
-                'nutribullet',
-                'oculus',
-                'olaplex',
-                'organica',
-                'organix',
-                'orgreenic',
-                'orient',
-                'pedegg',
-                'peppa',
-                'pevonia',
-                'peyote',
-                'philips',
-                'pink',
-                'popsocket',
-                'popsockets',
-                'protein',
-                'proteina',
-                'proteinas',
-                'proteins',
-                'replica',
-                'roku',
-                'rxbar',
-                'scoifman',
-                'secrid',
-                'sephora',
-                'silk´n',
-                'similac',
-                'sketchers',
-                'software',
-                'speck',
-                'suero',
-                'superbreak',
-                'suplement',
-                'suplemento',
-                'suplementos',
-                'suplements',
-                'supplement',
-                'supplements',
-                'tech21',
-                'thinoptics',
-                'tissot',
-                'toner',
-                'toningit',
-                'toppik',
-                'travalo',
-                'trx',
-                'tylenol',
-                'ultramax',
-                'urbandecay',
-                'usana',
-                'venodol',
-                'vogue',
-                'wahl',
-                'waterpik',
-                'weed',
-                'willowfresh',
-                'xerox',
-                'yarongtech',
-                'younique',
-                'zlimmy',
-                'zumbador',
-                'buzzer'
-            ];
 
             if (abShaperTitle.length > 1 ||
                 airDragonTitle.length > 1 ||
@@ -782,22 +397,25 @@ function validateText(text1, text2, text3, text4, text5, text6, text7, text8) {
             ) {
                 incompatibleTitle = true;
             } else {
-            words.forEach(elementInWords => {
-                wrongWords.forEach(elementWrong => {
-                    if (elementInWords == elementWrong) {
-                        incompatibleTitle = true;
-                    };
+                words.forEach(elementInWords => {
+                    wrongWords.forEach(elementWrong => {
+                        if (elementInWords == elementWrong) {
+                            incompatibleTitle = true;
+                        };
+                    });
                 });
-            });
-        };
-        return incompatibleTitle;
+            };
+            return incompatibleTitle;
+        }
     } else {
         let error = {
             error: 'Undefined Value',
-            message: 'You have to provide eight text to validate, provide a null string if you dont have other texts to validate.'
+            message: 'Please provide an String value'
         };
         return error;
     };
 };
+
+console.log(validateText());
 
 module.exports = { validateText };
