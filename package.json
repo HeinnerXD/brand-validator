@@ -1,6 +1,6 @@
 {
   "name": "brand-validator",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Module to validate any famous or certificated brand on your text",
   "main": "index.js",
   "scripts": {
