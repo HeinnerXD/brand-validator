@@ -416,6 +416,4 @@ function validateText(text) {
     };
 };
 
-console.log(validateText());
-
 module.exports = { validateText };
