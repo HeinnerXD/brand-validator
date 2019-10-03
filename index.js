@@ -415,16 +415,4 @@ async function validateText(text) {
     });
 }
 
-async function test() {
-    try {
-        let test = await validateText('apple');
-        console.log({response: test});
-    } catch (error) {
-        console.log({error: error});
-    }
-}
-
-test();
-
-
 module.exports = { validateText }

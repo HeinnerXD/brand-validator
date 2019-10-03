@@ -3,10 +3,16 @@ Module to validate if your text have any registered or famous brand.
 
 # Example
 
-    var text = 'This is a product made in apple' // apple is a registered brand
-
     const validator = require('brand-validator');
 
-    let brandFound = await validator.validateText(text);
+    async function test() {
+        try {
+            var text = "Apple"; // Famous Brand (Apple)
+            let brandFound = await validator.validateText(text);
+            console.log(brandFound);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
-    console.log(brandFound); // true
+    test(); // true
