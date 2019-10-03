@@ -7,6 +7,6 @@ Module to validate if your text have any registered or famous brand.
 
     const validator = require('brand-validator');
 
-    let brandFound = validator.validateText(text, '', '', '', '', '', '', ''); // Provide null strings if you dont have other texts to validate.
+    let brandFound = validator.validateText(text);
 
     console.log(brandFound); // true
